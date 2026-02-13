@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Meu Catálogo</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+  <h1>🎬 Meu Catálogo</h1>
+  <button onclick="abrirConfig()">⚙️ Configurações</button>
+</header>
+
+<section class="upload">
+
+  <h2>Adicionar Filme</h2>
+
+  <input type="text" id="nomeFilme" placeholder="Nome do filme">
+
+  <input type="file" id="capa" accept="image/*">
+
+  <input type="file" id="video" accept="video/*">
+
+  <button onclick="addFilme()">Adicionar</button>
+
+</section>
+
+<section class="catalogo" id="catalogo"></section>
+
+
+<!-- PLAYER -->
+<div id="playerBox" class="player">
+
+  <video id="player" controls></video>
+
+  <div class="player-config">
+
+    <button onclick="toggleIdioma()">⚙️</button>
+
+    <div id="idiomaBox" class="idioma">
+      <button onclick="setIdioma('pt')">Português</button>
+      <button onclick="setIdioma('en')">Inglês</button>
+    </div>
+
+  </div>
+
+  <button onclick="fecharPlayer()">❌ Fechar</button>
+
+</div>
+
+
+<!-- CONFIG -->
+<div id="configBox" class="config">
+
+  <h2>Configurações</h2>
+
+  <input type="file" id="fundo" accept="image/*">
+
+  <button onclick="trocarFundo()">Trocar Fundo</button>
+
+  <button onclick="fecharConfig()">Fechar</button>
+
+</div>
+
+
+<script src="script.js"></script>
+</body>
+</html>
