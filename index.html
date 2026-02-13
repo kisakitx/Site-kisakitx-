@@ -19,7 +19,7 @@
 
   <input type="text" id="nomeFilme" placeholder="Nome do filme">
 
-  <input type="file" id="capa" accept="image/*">
+  <input type="text" id="linkVideo" placeholder="Cole o link do YouTube">
 
   <input type="text" id="linkVideo" placeholder="Cole o link do YouTube">
 
@@ -33,7 +33,13 @@
 <!-- PLAYER -->
 <div id="playerBox" class="player">
 
-  <video id="player" controls></video>
+  <iframe id="player"
+  width="90%"
+  height="400"
+  frameborder="0"
+  allow="autoplay; encrypted-media"
+  allowfullscreen>
+</iframe>
 
   <div class="player-config">
 

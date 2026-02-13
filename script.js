@@ -1,13 +1,24 @@
 let idioma = "pt";
 
+/* =========================
+   ADICIONAR FILME
+========================= */
+
 function addFilme(){
 
   let nome = document.getElementById("nomeFilme").value;
   let capa = document.getElementById("capa").files[0];
-  let linkVideo = document.getElementById("linkVideo").value;
+  let link = document.getElementById("linkVideo").value;
 
-  if(!nome || !capa || !video){
+  if(!nome || !capa || !link){
     alert("Preencha tudo!");
+    return;
+  }
+
+  let id = pegarID(link);
+
+  if(!id){
+    alert("Link do YouTube inválido!");
     return;
   }
 
@@ -20,33 +31,40 @@ function addFilme(){
   let p = document.createElement("p");
   p.innerText = nome;
 
+  /* BOTÃO APAGAR */
+  let btnDel = document.createElement("button");
+  btnDel.innerText = "🗑️ Apagar";
+  btnDel.className = "btn-del";
+
+  btnDel.onclick = (e)=>{
+    e.stopPropagation();
+
+    if(confirm("Quer apagar este filme?")){
+      div.remove();
+    }
+  }
+
   div.appendChild(img);
   div.appendChild(p);
+  div.appendChild(btnDel);
 
   div.onclick = ()=>{
-  selecionar(div);
-  abrirPlayer(video);
-}
-
-// BOTÃO APAGAR
-let btnDel = document.createElement("button");
-btnDel.innerText = "🗑️ Apagar";
-btnDel.className = "btn-del";
-
-btnDel.onclick = (e)=>{
-  e.stopPropagation();
-
-  if(confirm("Quer apagar este filme?")){
-    div.remove();
+    selecionar(div);
+    abrirPlayer(id);
   }
-}
-
-div.appendChild(btnDel);
 
   document.getElementById("catalogo").appendChild(div);
 
-  document.getElementById("nomeFilme").value = "";
+  // Limpar campos
+  document.getElementById("nomeFilme").value="";
+  document.getElementById("linkVideo").value="";
+  document.getElementById("capa").value="";
 }
+
+
+/* =========================
+   SELECIONAR FILME
+========================= */
 
 function selecionar(el){
 
@@ -57,17 +75,34 @@ function selecionar(el){
   el.classList.add("ativo");
 }
 
-function abrirPlayer(video){
+
+/* =========================
+   PLAYER YOUTUBE
+========================= */
+
+function abrirPlayer(id){
 
   let player = document.getElementById("player");
-  player.src = "https://www.youtube.com/embed/" + pegarID(linkVideo) + "?autoplay=1";
 
-  document.getElementById("playerBox").style.display = "flex";
+  player.src =
+   "https://www.youtube.com/embed/" + id + "?autoplay=1";
+
+  document.getElementById("playerBox").style.display="flex";
 }
 
 function fecharPlayer(){
-  document.getElementById("playerBox").style.display = "none";
+
+  let player = document.getElementById("player");
+
+  player.src = "";
+
+  document.getElementById("playerBox").style.display="none";
 }
+
+
+/* =========================
+   IDIOMA PLAYER
+========================= */
 
 function toggleIdioma(){
 
@@ -89,7 +124,10 @@ function setIdioma(lang){
   document.getElementById("idiomaBox").style.display="none";
 }
 
-/* CONFIG */
+
+/* =========================
+   CONFIGURAÇÕES
+========================= */
 
 function abrirConfig(){
   document.getElementById("configBox").style.display="flex";
@@ -110,8 +148,22 @@ function trocarFundo(){
 
   document.body.style.backgroundImage =
     `url(${URL.createObjectURL(img)})`;
-}function pegarID(url) {
-  let id = url.split("youtu.be/")[1];
-  if(id && id.includes("?")) id = id.split("?")[0];
-  return id;
+}
+
+
+/* =========================
+   PEGAR ID YOUTUBE
+========================= */
+
+function pegarID(url){
+
+  if(url.includes("youtu.be/")){
+    return url.split("youtu.be/")[1].split("?")[0];
+  }
+
+  if(url.includes("youtube.com/watch")){
+    return url.split("v=")[1].split("&")[0];
+  }
+
+  return null;
 }
