@@ -4,7 +4,7 @@ function addFilme(){
 
   let nome = document.getElementById("nomeFilme").value;
   let capa = document.getElementById("capa").files[0];
-  let video = document.getElementById("video").files[0];
+  let linkVideo = document.getElementById("linkVideo").value;
 
   if(!nome || !capa || !video){
     alert("Preencha tudo!");
@@ -60,7 +60,7 @@ function selecionar(el){
 function abrirPlayer(video){
 
   let player = document.getElementById("player");
-  player.src = URL.createObjectURL(video);
+  player.src = "https://www.youtube.com/embed/" + pegarID(linkVideo) + "?autoplay=1";
 
   document.getElementById("playerBox").style.display = "flex";
 }
@@ -110,4 +110,8 @@ function trocarFundo(){
 
   document.body.style.backgroundImage =
     `url(${URL.createObjectURL(img)})`;
+}function pegarID(url) {
+  let id = url.split("youtu.be/")[1];
+  if(id && id.includes("?")) id = id.split("?")[0];
+  return id;
 }
