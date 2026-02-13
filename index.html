@@ -1,76 +1,149 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+
 <meta charset="UTF-8">
-<title>Meu Catálogo</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Meu Catálogo de Filmes</title>
+
 <link rel="stylesheet" href="style.css">
+
 </head>
+
 
 <body>
 
+<!-- TOPO -->
 <header>
+
   <h1>🎬 Meu Catálogo</h1>
+
   <button onclick="abrirConfig()">⚙️ Configurações</button>
+
 </header>
 
+
+<!-- UPLOAD -->
 <section class="upload">
 
   <h2>Adicionar Filme</h2>
 
-  <input type="text" id="nomeFilme" placeholder="Nome do filme">
+  <input
+    type="text"
+    id="nomeFilme"
+    placeholder="Nome do filme"
+  >
 
-  <input type="text" id="linkVideo" placeholder="Cole o link do YouTube">
+  <br><br>
 
-  <input type="text" id="linkVideo" placeholder="Cole o link do YouTube">
+  <input
+    type="file"
+    id="capa"
+    accept="image/*"
+  >
+
+  <br><br>
+
+  <input
+    type="text"
+    id="linkVideo"
+    placeholder="Cole o link do YouTube"
+  >
+
+  <br><br>
 
   <button onclick="addFilme()">Adicionar</button>
 
 </section>
 
-<section class="catalogo" id="catalogo"></section>
+
+<!-- CATÁLOGO -->
+<section
+  class="catalogo"
+  id="catalogo">
+</section>
 
 
 <!-- PLAYER -->
-<div id="playerBox" class="player">
+<div
+  id="playerBox"
+  class="player">
 
-  <iframe id="player"
-  width="90%"
-  height="400"
-  frameborder="0"
-  allow="autoplay; encrypted-media"
-  allowfullscreen>
-</iframe>
+  <iframe
+    id="player"
+    width="90%"
+    height="400"
+    frameborder="0"
+    allow="autoplay; encrypted-media"
+    allowfullscreen>
+  </iframe>
 
+
+  <!-- CONFIG DO PLAYER -->
   <div class="player-config">
 
     <button onclick="toggleIdioma()">⚙️</button>
 
-    <div id="idiomaBox" class="idioma">
-      <button onclick="setIdioma('pt')">Português</button>
-      <button onclick="setIdioma('en')">Inglês</button>
+    <div
+      id="idiomaBox"
+      class="idioma">
+
+      <button onclick="setIdioma('pt')">
+        Português
+      </button>
+
+      <button onclick="setIdioma('en')">
+        Inglês
+      </button>
+
     </div>
 
   </div>
 
-  <button onclick="fecharPlayer()">❌ Fechar</button>
+
+  <button onclick="fecharPlayer()">
+    ❌ Fechar
+  </button>
 
 </div>
 
 
-<!-- CONFIG -->
-<div id="configBox" class="config">
+<!-- CONFIGURAÇÕES -->
+<div
+  id="configBox"
+  class="config">
 
   <h2>Configurações</h2>
 
-  <input type="file" id="fundo" accept="image/*">
+  <br>
 
-  <button onclick="trocarFundo()">Trocar Fundo</button>
+  <p>Trocar imagem de fundo:</p>
 
-  <button onclick="fecharConfig()">Fechar</button>
+  <input
+    type="file"
+    id="fundo"
+    accept="image/*"
+  >
+
+  <br><br>
+
+  <button onclick="trocarFundo()">
+    Aplicar Fundo
+  </button>
+
+  <br><br>
+
+  <button onclick="fecharConfig()">
+    Fechar
+  </button>
 
 </div>
 
 
+<!-- SCRIPT -->
 <script src="script.js"></script>
+
 </body>
 </html>
