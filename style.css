@@ -94,4 +94,20 @@ header {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}/* BOTÃO APAGAR */
+
+.btn-del{
+  width: 90%;
+  margin: 5px;
+  padding: 5px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.btn-del:hover{
+  background: darkred;
 }

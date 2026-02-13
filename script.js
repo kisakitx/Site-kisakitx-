@@ -24,9 +24,24 @@ function addFilme(){
   div.appendChild(p);
 
   div.onclick = ()=>{
-    selecionar(div);
-    abrirPlayer(video);
+  selecionar(div);
+  abrirPlayer(video);
+}
+
+// BOTÃO APAGAR
+let btnDel = document.createElement("button");
+btnDel.innerText = "🗑️ Apagar";
+btnDel.className = "btn-del";
+
+btnDel.onclick = (e)=>{
+  e.stopPropagation();
+
+  if(confirm("Quer apagar este filme?")){
+    div.remove();
   }
+}
+
+div.appendChild(btnDel);
 
   document.getElementById("catalogo").appendChild(div);
 
